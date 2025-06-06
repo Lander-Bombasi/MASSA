@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MASSA Smart Scale</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <h1>MASSA Smart Scale</h1>
+  <div class="panel">
+    <p>Weight: <span id="weight">0.000</span> kg</p>
+    <p>Banana Type: <span id="type">None</span></p>
+    <p>Price/kg: ₱<span id="price">0.00</span></p>
+    <p>Amount: ₱<span id="amount">0.00</span></p>
+    <button onclick="classify()">Classify Banana</button>
+  </div>
+
+  <script>
+    let weight = 0;
+    let price = 0;
+
+    function updateWeight() {
+      fetch('/weight')
+        .then(res => res.json())
+        .then(data => {
+          weight = parseFloat(data.weight);
+          document.getElementById('weight').innerText = data.weight;
+          updateAmount();
+        });
+    }
+
+    function classify() {
+      fetch('/classify')
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById('type').innerText = data.type;
+          document.getElementById('price').innerText = data.price.toFixed(2);
+          price = data.price;
+          updateAmount();
+        });
+    }
+
+    function updateAmount() {
+      const total = weight * price;
+      document.getElementById('amount').innerText = total.toFixed(2);
+    }
+
+    setInterval(updateWeight, 1000);
+  </script>
+</body>
+</html>
