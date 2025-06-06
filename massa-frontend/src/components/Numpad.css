@@ -1,0 +1,64 @@
+numpad-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.numpad-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.numpad-btn {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  padding: 15px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.numpad-btn:active:not(:disabled) {
+  background: #f0f0f0;
+}
+
+.clear-btn {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.action-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.action-btn {
+  padding: 12px 0;
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.detect-btn {
+  background: #fff8e1;
+  color: #ff8f00;
+}
+
+.receipt-btn {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+.numpad-btn:disabled,
+.action-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
